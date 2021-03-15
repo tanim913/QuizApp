@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 // void main ()
 // {
@@ -22,7 +23,13 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    
+    print(_questionIndex);
+  }
+
+  void _previousQuestion() {
+    setState(() {
+      _questionIndex = _questionIndex-1;
+    });
     print(_questionIndex);
   }
 
@@ -39,7 +46,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(question[_questionIndex]),
+            Question(question[_questionIndex]),
             RaisedButton(
               child: Text('Answer1'),
               onPressed: () {
@@ -62,12 +69,7 @@ class _MyAppState extends State<MyApp> {
                 print("D");
               },
             ),
-            RaisedButton(
-              child: Text('Answer5'),
-              onPressed: () {
-                print("E");
-              },
-            ),
+            RaisedButton(child: Text('Answer5'), onPressed: _previousQuestion),
           ],
         ),
       ),
