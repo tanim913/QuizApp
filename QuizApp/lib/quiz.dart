@@ -24,15 +24,16 @@ class Quiz extends StatelessWidget {
         ...(questions[questionIndex]['answers'] as List<String>).map((answer) {
           return Answer(answerQuestion, answer);
         }).toList(),
-        RaisedButton(
-            child: Text('Previous'),
-            color: Colors.red,
-            onPressed: previousQuestion),
-            
-        RaisedButton(
-            child: Text('Next'), 
-            color: Colors.green, 
-            onPressed: nextQuestion),
+        if (questionIndex > 0)
+          RaisedButton(
+              child: Text('Previous'),
+              color: Colors.red,
+              onPressed: previousQuestion),
+        if (questionIndex < questions.length - 1)
+          RaisedButton(
+              child: Text('Next'),
+              color: Colors.green,
+              onPressed: nextQuestion),
       ],
     );
   }
