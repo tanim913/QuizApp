@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './question.dart';
+import './quiz.dart';
 
 // void main ()
 // {
@@ -17,9 +17,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _questions = const [
+    {
+      'questionText': 'What is your favorite color?',
+      'answers': ['Black', 'Red', 'White', 'Green']
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['Cat', 'Dog', 'Human', 'Monkey']
+    },
+    {
+      'questionText': 'Who is your BJ Horseman Character?',
+      'answers': ['Todd', 'Mr. PB', 'PC', 'BJH']
+    },
+  ];
   var _questionIndex = 0;
 
   void _answerQuestion() {
+    if (_questionIndex < _questions.length) {
+      print('We have more questions');
+    } else {
+      print('No More questions');
+    }
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -28,50 +47,41 @@ class _MyAppState extends State<MyApp> {
 
   void _previousQuestion() {
     setState(() {
-      _questionIndex = _questionIndex-1;
+      _questionIndex = _questionIndex - 1;
+      if(_questionIndex < 0)
+      {
+        _questionIndex = 0;
+      }
+    });
+    print(_questionIndex);
+  }
+
+  void _nextQuestion() {
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+      if(_questionIndex > _questions.length-1)
+      {
+        _questionIndex = _questions.length-1;
+      }
     });
     print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    var question = [
-      'What is your favorite color?',
-      'What\'s your favorite animal?'
-    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Quiz'),
         ),
-        body: Column(
-          children: [
-            Question(question[_questionIndex]),
-            RaisedButton(
-              child: Text('Answer1'),
-              onPressed: () {
-                print("A");
-              },
-            ),
-            RaisedButton(
-              child: Text('Answer2'),
-              onPressed: _answerQuestion,
-            ),
-            RaisedButton(
-              child: Text('Answer3'),
-              onPressed: () {
-                print("C");
-              },
-            ),
-            RaisedButton(
-              child: Text('Answer4'),
-              onPressed: () {
-                print("D");
-              },
-            ),
-            RaisedButton(child: Text('Answer5'), onPressed: _previousQuestion),
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                previousQuestion: _previousQuestion,
+                nextQuestion: _nextQuestion,
+                questions:_questions,
+                questionIndex: _questionIndex)
+            : Center(child: Text('Noice!')),
       ),
     );
   }
