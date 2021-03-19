@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import './quiz.dart';
+import './result.dart';
 
 // void main ()
 // {
@@ -30,6 +32,14 @@ class _MyAppState extends State<MyApp> {
       'questionText': 'Who is your BJ Horseman Character?',
       'answers': ['Todd', 'Mr. PB', 'PC', 'BJH']
     },
+    {
+      'questionText': 'What is your favorite trait in a person?',
+      'answers': ['Kindness', 'Empathy', 'Genuinity', 'Transparency']
+    },
+    {
+      'questionText': 'Which is your favorite web series?',
+      'answers': ['Breaking Bad', 'Dark', 'BoJack Horseman', 'Peaky Blinders']
+    }
   ];
   var _questionIndex = 0;
 
@@ -48,10 +58,6 @@ class _MyAppState extends State<MyApp> {
   void _previousQuestion() {
     setState(() {
       _questionIndex = _questionIndex - 1;
-      if(_questionIndex < 0)
-      {
-        _questionIndex = 0;
-      }
     });
     print(_questionIndex);
   }
@@ -59,10 +65,6 @@ class _MyAppState extends State<MyApp> {
   void _nextQuestion() {
     setState(() {
       _questionIndex = _questionIndex + 1;
-      if(_questionIndex > _questions.length-1)
-      {
-        _questionIndex = _questions.length-1;
-      }
     });
     print(_questionIndex);
   }
@@ -81,7 +83,7 @@ class _MyAppState extends State<MyApp> {
                 nextQuestion: _nextQuestion,
                 questions:_questions,
                 questionIndex: _questionIndex)
-            : Center(child: Text('Noice!')),
+            : Result(),
       ),
     );
   }
