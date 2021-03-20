@@ -68,6 +68,12 @@ class _MyAppState extends State<MyApp> {
   ];
   var _questionIndex = 0;
   var _totalScore = 0;
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
 
   void _answerQuestion(int score) {
     if (_questionIndex < _questions.length) {
@@ -90,7 +96,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex = _questionIndex - 1;
     });
-    if (_questionIndex <= 0) {
+    if (_totalScore >= _pscore) {
       _totalScore -= _pscore;
     }
     print('total score is ' + _totalScore.toString());
@@ -118,7 +124,7 @@ class _MyAppState extends State<MyApp> {
                 nextQuestion: _nextQuestion,
                 questions: _questions,
                 questionIndex: _questionIndex)
-            : Result(_totalScore),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }
