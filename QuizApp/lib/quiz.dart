@@ -27,13 +27,19 @@ class Quiz extends StatelessWidget {
         }).toList(),
         if (questionIndex > 0)
           RaisedButton(
-              child: Text('Previous'),
+              child: Text('<<',
+              style: TextStyle(fontSize: 25),
+              ),
               color: Colors.red,
+              textColor: Colors.white,
               onPressed: previousQuestion),
         if (questionIndex < questions.length - 1)
           RaisedButton(
-              child: Text('Next'),
+              child: Text('>>',
+              style: TextStyle(fontSize: 25),
+              ),
               color: Colors.green,
+              textColor: Colors.white,
               onPressed: nextQuestion),
       ],
     );
