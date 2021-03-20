@@ -1,3 +1,2 @@
 # QuizApp
-this is an quiz application using flutter
-This is under development 
+this is an personality quiz application using flutter
