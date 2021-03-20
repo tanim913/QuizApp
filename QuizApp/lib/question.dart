@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Question extends StatelessWidget {
   final String questionText;
-  
+
   Question(this.questionText);
 
   @override
@@ -12,7 +12,7 @@ class Question extends StatelessWidget {
       margin: EdgeInsets.all(20),
       child: Text(
         questionText,
-        style: TextStyle(fontSize: 28,color: Colors.indigo),
+        style: TextStyle(fontSize: 28, color: Colors.indigo),
         textAlign: TextAlign.center,
       ),
     );
