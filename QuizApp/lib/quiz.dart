@@ -28,7 +28,7 @@ class Quiz extends StatelessWidget {
         if (questionIndex > 0)
           RaisedButton(
               child: Text('<<',
-              style: TextStyle(fontSize: 2),
+              style: TextStyle(fontSize: 25),
               ),
               color: Colors.red,
               textColor: Colors.white,
